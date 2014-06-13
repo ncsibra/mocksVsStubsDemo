@@ -7,10 +7,28 @@ import org.mockito.Mockito;
 public class UserNameServiceTest {
 
     @Test
+    public void testGetUserNameByIdWithEasyMockHighCoupling() {
+        // GIVEN
+        UserService mockService = EasyMock.createMock(UserService.class);
+        User mockUser = EasyMock.createMock(User.class);
+        UserNameService underTest = new UserNameService(mockService);
+
+        EasyMock.expect(mockService.getUserById(1)).andReturn(mockUser);
+        EasyMock.expect(mockUser.getName()).andReturn("");
+        EasyMock.replay(mockService, mockUser);
+
+        // WHEN
+        underTest.getUserNameById(1);
+
+        // THEN
+        EasyMock.verify(mockUser, mockService);
+    }
+
+    @Test
     public void testGetUserNameByIdWithEasyMock() {
         // GIVEN
         UserService stubService = EasyMock.createNiceMock(UserService.class);
-        User mockUser = EasyMock.createMock(User.class);
+        User mockUser = EasyMock.createNiceMock(User.class);
         UserNameService underTest = new UserNameService(stubService);
 
         EasyMock.expect(stubService.getUserById(EasyMock.anyInt())).andStubReturn(mockUser);

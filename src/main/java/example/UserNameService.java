@@ -13,4 +13,14 @@ public class UserNameService {
 
         return user.getName();
     }
+
+//    public String getUserNameByIdFromCache(int userId) {
+//        User user = userService.getUserByIdFromCache(userId);
+//
+//        if (user == null) {
+//            user = userService.getUserById(userId);
+//        }
+//
+//        return user.getName();
+//    }
 }
