@@ -1,5 +1,13 @@
 package example;
 
-public interface User {
-    String getName();
+public class User {
+    private final int id;
+
+    public User(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
 }
