@@ -110,18 +110,16 @@ public class UserRetrieverTest {
     @Test
     public void testShouldCallUserServiceOnce_2() {
         // GIVEN
-        int userId = 1;
-        User user = new User(userId);
         UserServiceFactory mockFactory = EasyMock.createNiceMock(UserServiceFactory.class);
         UserService mockService = EasyMock.createMock(UserService.class);
         UserRetriever underTest = new UserRetriever(mockFactory);
 
         EasyMock.expect(mockFactory.getService()).andStubReturn(mockService);
-        EasyMock.expect(mockService.getUserById(EasyMock.anyInt())).andReturn(user).times(1);
+        EasyMock.expect(mockService.getUserById(EasyMock.anyInt())).andReturn(null).times(1);
         EasyMock.replay(mockFactory, mockService);
 
         // WHEN
-        underTest.getUserById(userId);
+        underTest.getUserById(1);
 
         // THEN
         EasyMock.verify(mockService);
