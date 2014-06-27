@@ -12,20 +12,20 @@ public class UserRetrieverTest {
     public void testShouldReturnUserForValidId_1() {
         // GIVEN
         int userId = 1;
-        User user = new User(userId);
+        User expected = new User(userId);
         UserServiceFactory mockFactory = EasyMock.createMock(UserServiceFactory.class);
         UserService mockService = EasyMock.createMock(UserService.class);
         UserRetriever underTest = new UserRetriever(mockFactory);
 
         EasyMock.expect(mockFactory.getService()).andReturn(mockService);
-        EasyMock.expect(mockService.getUserById(userId)).andReturn(user);
+        EasyMock.expect(mockService.getUserById(userId)).andReturn(expected);
         EasyMock.replay(mockFactory, mockService);
 
         // WHEN
         User actual = underTest.getUserById(userId);
 
         // THEN
-        assertEquals(userId, actual.getId());
+        assertEquals(expected.getId(), actual.getId());
         EasyMock.verify(mockFactory, mockService);
     }
 
@@ -33,77 +33,77 @@ public class UserRetrieverTest {
     public void testShouldReturnUserForValidId_2() {
         // GIVEN
         int userId = 1;
-        User user = new User(userId);
+        User expected = new User(userId);
         UserServiceFactory mockFactory = EasyMock.createMock(UserServiceFactory.class);
         UserService mockService = EasyMock.createMock(UserService.class);
         UserRetriever underTest = new UserRetriever(mockFactory);
 
         EasyMock.expect(mockFactory.getService()).andStubReturn(mockService);
-        EasyMock.expect(mockService.getUserById(userId)).andStubReturn(user);
+        EasyMock.expect(mockService.getUserById(userId)).andStubReturn(expected);
         EasyMock.replay(mockFactory, mockService);
 
         // WHEN
         User actual = underTest.getUserById(userId);
 
         // THEN
-        assertEquals(userId, actual.getId());
+        assertEquals(expected.getId(), actual.getId());
     }
 
     @Test
     public void testShouldReturnUserForValidId_3() {
         // GIVEN
         int userId = 1;
-        User user = new User(userId);
+        User expected = new User(userId);
         UserServiceFactory stubFactory = EasyMock.createNiceMock(UserServiceFactory.class);
         UserService stubService = EasyMock.createNiceMock(UserService.class);
         UserRetriever underTest = new UserRetriever(stubFactory);
 
         EasyMock.expect(stubFactory.getService()).andStubReturn(stubService);
-        EasyMock.expect(stubService.getUserById(EasyMock.anyInt())).andStubReturn(user);
+        EasyMock.expect(stubService.getUserById(EasyMock.anyInt())).andStubReturn(expected);
         EasyMock.replay(stubFactory, stubService);
 
         // WHEN
         User actual = underTest.getUserById(userId);
 
         // THEN
-        assertEquals(userId, actual.getId());
+        assertEquals(expected.getId(), actual.getId());
     }
 
     @Test
      public void testShouldReturnUserForValidId_4() {
         // GIVEN
         int userId = 1;
-        User user = new User(userId);
+        User expected = new User(userId);
         UserServiceFactory stubFactory = Mockito.mock(UserServiceFactory.class, Mockito.RETURNS_DEEP_STUBS);
         UserRetriever underTest = new UserRetriever(stubFactory);
 
-        Mockito.when(stubFactory.getService().getUserById(Mockito.anyInt())).thenReturn(user);
+        Mockito.when(stubFactory.getService().getUserById(Mockito.anyInt())).thenReturn(expected);
 
         // WHEN
         User actual = underTest.getUserById(userId);
 
         // THEN
-        assertEquals(userId, actual.getId());
+        assertEquals(expected.getId(), actual.getId());
     }
 
     @Test
     public void testShouldCallUserServiceOnce_1() {
         // GIVEN
         int userId = 1;
-        User user = new User(userId);
+        User expected = new User(userId);
         UserServiceFactory stubFactory = EasyMock.createNiceMock(UserServiceFactory.class);
         UserService mockService = EasyMock.createMock(UserService.class);
         UserRetriever underTest = new UserRetriever(stubFactory);
 
         EasyMock.expect(stubFactory.getService()).andStubReturn(mockService);
-        EasyMock.expect(mockService.getUserById(EasyMock.anyInt())).andReturn(user);
+        EasyMock.expect(mockService.getUserById(EasyMock.anyInt())).andReturn(expected);
         EasyMock.replay(stubFactory, mockService);
 
         // WHEN
         User actual = underTest.getUserById(userId);
 
         // THEN
-        assertEquals(userId, actual.getId());
+        assertEquals(expected.getId(), actual.getId());
         EasyMock.verify(mockService);
     }
 
