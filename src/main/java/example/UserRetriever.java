@@ -11,6 +11,7 @@ public class UserRetriever {
     public User getUserById(int userId) {
         UserService service = factory.getService();
 
-        return service.getUserById(userId);
+        User user = service.getUserById(userId);
+        return user;
     }
 }

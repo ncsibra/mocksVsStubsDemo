@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 public class UserRetrieverTest {
 
     @Test
-    public void testShouldReturnUserForValidId_1() {
+    public void testShouldReturnUserForValidId_TightestCoupling() {
         // GIVEN
         int userId = 1;
         User expected = new User(userId);
@@ -30,7 +30,7 @@ public class UserRetrieverTest {
     }
 
     @Test
-    public void testShouldReturnUserForValidId_2() {
+    public void testShouldReturnUserForValidId_LooserCoupling() {
         // GIVEN
         int userId = 1;
         User expected = new User(userId);
@@ -50,7 +50,7 @@ public class UserRetrieverTest {
     }
 
     @Test
-    public void testShouldReturnUserForValidId_3() {
+    public void testShouldReturnUserForValidId_LoosestCoupling() {
         // GIVEN
         int userId = 1;
         User expected = new User(userId);
@@ -70,7 +70,7 @@ public class UserRetrieverTest {
     }
 
     @Test
-     public void testShouldReturnUserForValidId_4() {
+     public void testShouldReturnUserForValidId_LoosestCouplingWithMockito() {
         // GIVEN
         int userId = 1;
         User expected = new User(userId);
@@ -87,7 +87,7 @@ public class UserRetrieverTest {
     }
 
     @Test
-    public void testShouldCallUserServiceOnce_1() {
+    public void testShouldCallUserServiceOnce_TightCoupling() {
         // GIVEN
         int userId = 1;
         User expected = new User(userId);
@@ -108,7 +108,7 @@ public class UserRetrieverTest {
     }
 
     @Test
-    public void testShouldCallUserServiceOnce_2() {
+    public void testShouldCallUserServiceOnce_LooseCoupling() {
         // GIVEN
         UserServiceFactory stubFactory = EasyMock.createNiceMock(UserServiceFactory.class);
         UserService mockService = EasyMock.createMock(UserService.class);
@@ -126,7 +126,7 @@ public class UserRetrieverTest {
     }
 
     @Test
-    public void testShouldCallUserServiceOnce_3() {
+    public void testShouldCallUserServiceOnce_LooseCouplingWithMockito() {
         // GIVEN
         UserServiceFactory stubFactory = Mockito.mock(UserServiceFactory.class);
         UserService mockService = Mockito.mock(UserService.class);
